@@ -21,7 +21,6 @@ public class Kotik {
         public Kotik() {
             count++;
         }
-
         // Getter and Setter для полей name, voice, satiety, weight
         public String getName() {
             return name;

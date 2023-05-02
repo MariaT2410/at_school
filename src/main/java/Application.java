@@ -3,6 +3,7 @@ import animals.Kotik;
 public class Application {
     public static void main(String[] arg){
         System.out.println("Добро пожаловать в котоДОМ");
+
         //создаём котика через конструктор
         Kotik k = new Kotik("Зефирка", "мур-мяу", 4, 4900);
 
@@ -12,7 +13,6 @@ public class Application {
         kotik2.setVoice("ммррррр");
         kotik2.setSatiety(6);
         kotik2.setWeight(3600);
-
         //Жизненный путь котика 1 за день
         //k.liveAnotherDay();
         for(String c: k.liveAnotherDay()) {
