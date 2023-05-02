@@ -31,16 +31,14 @@ public class Fish extends Herbivore implements Swim{
     }
 
     @Override
-    public void eat(Food food) {
-        try {
+    public void eat(Food food) throws WrongFoodException {
+
             if (!(food instanceof Grass)) {
-                throw new WrongFoodException("ошибка");
+                throw new WrongFoodException("WrongFoodException");
             } else {
-                this.satiety = food.getEnergy();
+                this.satiety += food.getEnergy();
             }
-        } catch (WrongFoodException e) {
-            e.printStackTrace();
-        }
+
 
     }
 

@@ -44,19 +44,12 @@ public class Bison extends Herbivore implements Run, Swim, Voice {
     }
 
     @Override
-    public void eat(Food food) {
-        try {
+    public void eat(Food food) throws WrongFoodException {
             if(!(food instanceof Grass)){
-                throw new WrongFoodException("Ошибка");
+                throw new WrongFoodException("WrongFoodException");
             }else {
-                this.satiety = food.getEnergy();
+                this.satiety += food.getEnergy();
             }
-
-        } catch (WrongFoodException e) {
-            e.printStackTrace();
-        }
-
-
     }
 
     @Override

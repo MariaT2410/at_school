@@ -50,17 +50,13 @@ public class Duck extends Herbivore implements Fly, Run,Swim, Voice{
     }
 
     @Override
-    public void eat(Food food) {
-        try {
-            if (!(food instanceof Grass)) {
-                throw new WrongFoodException("ошибка");
-            } else {
-                this.satiety = food.getEnergy();
-            }
-        } catch (WrongFoodException e) {
-            e.printStackTrace();
-        }
+    public void eat(Food food) throws WrongFoodException {
 
+            if (!(food instanceof Grass)) {
+                throw new WrongFoodException("WrongFoodException");
+            } else {
+                this.satiety += food.getEnergy();
+            }
     }
 
     @Override

@@ -25,17 +25,15 @@ public class Kotik extends Carnivorous implements Run,Voice{
 
 
     @Override
-    public void eat(Food food) {
-        try {
+    public void eat(Food food) throws WrongFoodException {
+
             if (!(food instanceof Meat)) {
-                throw new WrongFoodException("ошибка");
+                throw new WrongFoodException("WrongFoodException");
             } else {
 
-                this.satiety = food.getEnergy();
+                this.satiety += food.getEnergy();
             }
-        } catch (WrongFoodException e) {
-            e.printStackTrace();
-        }
+
 
     }
 
