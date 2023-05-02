@@ -9,7 +9,7 @@ public class Grass extends Food {
     }
 
     public int getEnergy(){
-       return (int) (Math.random() * 5);
+       return 2;
     }
 
 

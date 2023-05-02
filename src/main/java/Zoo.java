@@ -20,12 +20,10 @@ public class Zoo {
         System.out.println(k.getSatiety());
         k.eat(f2);
         System.out.println(k.getSatiety());
-
+        System.out.println("СТОППППППППППП");
 
         Bison b = new Bison("Гор", 4);
-        //b.eat(f2);
-        b.getSatiety();
-
+        b.eat(f);
         System.out.println(b.getSatiety());
         b.getVoice();
         Irbis ir = new Irbis("Ирбис", 6);
