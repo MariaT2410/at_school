@@ -2,17 +2,19 @@ package animals;
 
 import food.Food;
 import food.Meat;
+import food.WrongFoodException;
+import model.Size;
 
 public class Irbis extends Carnivorous implements Run, Voice, Swim{
-    private String name;
 
 
     public Irbis(String name, int satiety) {
-        this.name = name;
+        super(name);
         this.satiety = satiety;
     }
 
-    public Irbis() {
+    public Irbis(String name) {
+        super(name);
     }
 
     public String getName() {
@@ -51,13 +53,22 @@ public class Irbis extends Carnivorous implements Run, Voice, Swim{
 
     @Override
     public void eat(Food food) {
-        if(!(food instanceof Meat)){
-            System.out.println("Еда не является мясом");
-        }else {
+        try {
+            if (!(food instanceof Meat)) {
+                throw new WrongFoodException("ошибка");
+            } else {
 
-            this.satiety += food.getEnergy();
+                this.satiety += food.getEnergy();
+            }
+        } catch (WrongFoodException e) {
+            e.printStackTrace();
         }
 
+    }
+
+    @Override
+    public Size getSize() {
+        return Size.MEDIUM;
     }
 
 

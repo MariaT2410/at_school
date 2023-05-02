@@ -2,16 +2,17 @@ package animals;
 
 import food.Food;
 import food.Grass;
+import food.WrongFoodException;
+import model.Size;
 
 public class Fish extends Herbivore implements Swim{
-    private String name;
 
-
-    public Fish() {
+    public Fish(String name) {
+        super(name);
     }
 
     public Fish(String name, int satiety) {
-        this.name = name;
+        super(name);
         this.satiety = satiety;
     }
 
@@ -31,12 +32,21 @@ public class Fish extends Herbivore implements Swim{
 
     @Override
     public void eat(Food food) {
-        if(!(food instanceof Grass)){
-            System.out.println("Еда не является травой");
-        }else {
-            this.satiety += food.getEnergy();
+        try {
+            if (!(food instanceof Grass)) {
+                throw new WrongFoodException("ошибка");
+            } else {
+                this.satiety += food.getEnergy();
+            }
+        } catch (WrongFoodException e) {
+            e.printStackTrace();
         }
 
+    }
+
+    @Override
+    public Size getSize() {
+        return Size.MEDIUM;
     }
 
 

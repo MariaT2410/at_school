@@ -2,9 +2,11 @@ package animals;
 
 import food.Food;
 import food.Meat;
+import food.WrongFoodException;
+import model.Size;
 
 public class Kotik extends Carnivorous implements Run,Voice{
-    private String name;
+    //private String name;
     private String voice;
     private int weight;
     private String food;
@@ -14,7 +16,7 @@ public class Kotik extends Carnivorous implements Run,Voice{
 
     //Конструкторы
     public Kotik(String name, String voice, int satiety, int weight) {
-        this.name = name;
+        super(name);
         this.voice = voice;
         this.satiety = satiety;
         this.weight = weight;
@@ -23,16 +25,27 @@ public class Kotik extends Carnivorous implements Run,Voice{
 
     @Override
     public void eat(Food food) {
-        if(!(food instanceof Meat)){
-            System.out.println("Еда не является мясом");
-        }else {
+        try {
+            if (!(food instanceof Meat)) {
+                throw new WrongFoodException("ошибка");
+            } else {
 
-            this.satiety += food.getEnergy();
+                this.satiety += food.getEnergy();
+            }
+        } catch (WrongFoodException e) {
+            e.printStackTrace();
         }
 
     }
 
-    public Kotik() {
+    @Override
+    public Size getSize() {
+        return Size.SMALL;
+    }
+
+
+    public Kotik(String name) {
+        super(name);
         count++;
     }
 

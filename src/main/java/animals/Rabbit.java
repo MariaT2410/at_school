@@ -2,16 +2,19 @@ package animals;
 
 import food.Food;
 import food.Grass;
+import food.WrongFoodException;
+import model.Size;
 
 public class Rabbit extends Herbivore implements Run, Swim, Voice {
-    private String name;
-
 
     public Rabbit(String name, int satiety) {
-        this.name = name;
+        super(name);
         this.satiety = satiety;
     }
 
+    public Rabbit(String name) {
+        super(name);
+    }
 
     public String getName() {
         return name;
@@ -20,8 +23,6 @@ public class Rabbit extends Herbivore implements Run, Swim, Voice {
     public void setName(String name) {
         this.name = name;
     }
-
-    public Rabbit() {}
 
     public int getSatiety() {
         return satiety;
@@ -50,12 +51,21 @@ public class Rabbit extends Herbivore implements Run, Swim, Voice {
 
     @Override
     public void eat(Food food) {
-        if(!(food instanceof Grass)){
-            System.out.println("Еда не является травой");
-        }else {
+        try {
+            if (!(food instanceof Grass)) {
+                throw new WrongFoodException("ошибка");
+            } else {
 
-            this.satiety += food.getEnergy();
+                this.satiety += food.getEnergy();
+            }
+        } catch (WrongFoodException e) {
+            e.printStackTrace();
         }
 
+    }
+
+    @Override
+    public Size getSize() {
+        return Size.SMALL;
     }
 }

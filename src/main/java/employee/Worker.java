@@ -3,6 +3,7 @@ package employee;
 import animals.Animal;
 import animals.Voice;
 import food.Food;
+import food.WrongFoodException;
 
 public class Worker {
     private String name;
@@ -14,7 +15,7 @@ public class Worker {
         this.name = name;
     }
 
-    public void feed(Animal animal, Food food){
+    public void feed(Animal animal, Food food) throws WrongFoodException {
         animal.eat(food);
     }
 
