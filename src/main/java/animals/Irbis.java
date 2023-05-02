@@ -58,7 +58,7 @@ public class Irbis extends Carnivorous implements Run, Voice, Swim{
                 throw new WrongFoodException("ошибка");
             } else {
 
-                this.satiety += food.getEnergy();
+                this.satiety = food.getEnergy();
             }
         } catch (WrongFoodException e) {
             e.printStackTrace();

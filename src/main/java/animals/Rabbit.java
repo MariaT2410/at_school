@@ -56,7 +56,7 @@ public class Rabbit extends Herbivore implements Run, Swim, Voice {
                 throw new WrongFoodException("ошибка");
             } else {
 
-                this.satiety += food.getEnergy();
+                this.satiety = food.getEnergy();
             }
         } catch (WrongFoodException e) {
             e.printStackTrace();

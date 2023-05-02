@@ -29,13 +29,16 @@ public class Application {
         Kotik.getCount();
     }
     private static boolean compareVoice(Kotik m1, Kotik m2){
-        if (m1.getVoice().equals(m2.getVoice())){
-            System.out.println("Котики мяукают одинаково");
-            return true;
+        if(m1 == null){
+            return false;
         }
         else {
-            System.out.println("Котики мяукают по-разному");
-            return false;
+            if (m1.getVoice().equals(m2.getVoice())) {
+                System.out.println("Котики мяукают одинаково");
+                return true;
+            } else {
+                return false;
+            }
         }
     }
 }

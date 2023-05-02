@@ -36,7 +36,7 @@ public class Fish extends Herbivore implements Swim{
             if (!(food instanceof Grass)) {
                 throw new WrongFoodException("ошибка");
             } else {
-                this.satiety += food.getEnergy();
+                this.satiety = food.getEnergy();
             }
         } catch (WrongFoodException e) {
             e.printStackTrace();

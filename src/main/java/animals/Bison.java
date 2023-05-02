@@ -49,7 +49,7 @@ public class Bison extends Herbivore implements Run, Swim, Voice {
             if(!(food instanceof Grass)){
                 throw new WrongFoodException("Ошибка");
             }else {
-                this.satiety += food.getEnergy();
+                this.satiety = food.getEnergy();
             }
 
         } catch (WrongFoodException e) {

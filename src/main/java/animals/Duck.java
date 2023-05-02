@@ -55,7 +55,7 @@ public class Duck extends Herbivore implements Fly, Run,Swim, Voice{
             if (!(food instanceof Grass)) {
                 throw new WrongFoodException("ошибка");
             } else {
-                this.satiety += food.getEnergy();
+                this.satiety = food.getEnergy();
             }
         } catch (WrongFoodException e) {
             e.printStackTrace();

@@ -31,7 +31,7 @@ public class Kotik extends Carnivorous implements Run,Voice{
                 throw new WrongFoodException("ошибка");
             } else {
 
-                this.satiety += food.getEnergy();
+                this.satiety = food.getEnergy();
             }
         } catch (WrongFoodException e) {
             e.printStackTrace();
