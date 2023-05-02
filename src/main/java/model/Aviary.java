@@ -7,9 +7,9 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Aviary< E  extends Animal> {
-    public Size size;
+    private Size size;
 
-    Map<String, E> aviaryAnimal = new HashMap<>();
+    Map<String, E> aviaryMap = new HashMap<>();
 
     public Aviary(String name, Size size) {
         this.size = size;
@@ -19,18 +19,19 @@ public class Aviary< E  extends Animal> {
         this.size = size;
     }
 
-    public Map<String, E> addAnimal(E animal) throws WrongSizeException{
+    public void addAnimal(E animal) {
             if(size.equals(animal.getSize())){
-                aviaryAnimal.put(animal.getName(), animal);
-                return aviaryAnimal;
-            } else {throw new WrongSizeException("Произошла ошибка. Размер вольера не соответствует размеру зверька");}
+                aviaryMap.put(animal.getName(), animal);
+
+            } else
+                {throw new WrongSizeException("Произошла ошибка. Размер вольера не соответствует размеру зверька");}
     }
     public E getAnimal(String name){
-        return aviaryAnimal.get(name);
+        return aviaryMap.get(name);
     }
     public boolean removeAnimal(String name){
-        if(aviaryAnimal.containsKey(name)){
-            aviaryAnimal.remove(name);
+        if(aviaryMap.containsKey(name)){
+            aviaryMap.remove(name);
             return true;
         }
         return false;

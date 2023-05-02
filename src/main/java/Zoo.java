@@ -9,14 +9,14 @@ import model.Size;
 
 public class Zoo {
 
-    public static void main(String[] arg) throws WrongFoodException {
+    public static void main(String[] arg) throws Exception {
 
         Food f = new Grass("Трава");
         Food f2 = new Meat("убитый кролик");
         //создаём котика 1
         Kotik k = new Kotik("Зефирка", "мур-мяу", 5, 4900);
         //System.out.println(k.getSatiety());
-        ///k.eat(f);
+        k.eat(f);
         System.out.println(k.getSatiety());
         k.eat(f2);
         System.out.println(k.getSatiety());
@@ -36,7 +36,7 @@ public class Zoo {
         Fish fish = new Fish("Поньё", 3);
         Worker worker = new Worker("раб1");
         worker.feed(b, f);
-        //worker.feed(b, f2);
+        worker.feed(b, f2);
         System.out.println(b.getSatiety());
         worker.getVoice(ir);
 

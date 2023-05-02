@@ -15,8 +15,13 @@ public class Worker {
         this.name = name;
     }
 
-    public void feed(Animal animal, Food food) throws WrongFoodException {
-        animal.eat(food);
+    public void feed(Animal animal, Food food) {
+        try {
+            animal.eat(food);
+        } catch (WrongFoodException e) {
+            e.printStackTrace();
+        }
+
     }
 
     public void getVoice(Voice animal){

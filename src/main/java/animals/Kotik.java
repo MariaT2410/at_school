@@ -23,6 +23,7 @@ public class Kotik extends Carnivorous implements Run,Voice{
         count++;
     }
 
+
     @Override
     public void eat(Food food) {
         try {
@@ -88,54 +89,42 @@ public class Kotik extends Carnivorous implements Run,Voice{
 
 
     // Определение методов play (играть), sleep (спать), wash (умываться), walk (гулять), hunt (охотиться)
-    public boolean play(){
-        if( satiety>0){
-            System.out.println("Котик играет");
+    // Определение методов play (играть), sleep (спать), wash (умываться), walk (гулять), hunt (охотиться)
+    private boolean play(){
+        if( this.satiety>0){
+            //System.out.println("Котик играет");
             // случайно определяем сколько единиц сытости ушло во время play()
             int randomSatiety = (int) (Math.random() * 10);
             this.satiety -=randomSatiety;
             return true;
-        } else {
-            eat((int) (Math.random() * 10));
-            return false;
-        }
+        } else {return false;}
     }
-    public boolean sleep(){
-        if( satiety>0){
-            System.out.println("Котик спит");
+    private boolean sleep(){
+        if( this.satiety>0){
+            //System.out.println("Котик спит");
             // случайно определяем сколько единиц сытости ушло во время sleep()
             int randomSatiety = (int) (Math.random() * 10);
             this.satiety -=randomSatiety;
             return true;
-        } else {
-            eat((int) (Math.random() * 10));
-            return false;
-        }
-
+        } else {return false;}
     }
-    public boolean wash(){
-        if( satiety>0){
-            System.out.println("Котик умывается");
+    private boolean wash(){
+        if( this.satiety>0){
+            //System.out.println("Котик умывается");
             // случайно определяем сколько единиц сытости ушло во время wash()
             int randomSatiety = (int) (Math.random() * 10);
             this.satiety -=randomSatiety;
             return true;
-        } else {
-            eat((int) (Math.random() * 10));
-            return false;
-        }
+        } else {return false;}
     }
-    public boolean walk(){
-        if( satiety>0){
-            System.out.println("Котик гуляет");
+    private boolean walk(){
+        if( this.satiety>0){
+            //System.out.println("Котик гуляет");
             // случайно определяем сколько единиц сытости ушло во время walk()
             int randomSatiety = (int) (Math.random() * 10);
             this.satiety -=randomSatiety;
             return true;
-        } else {
-            eat((int) (Math.random() * 10));
-            return false;
-        }
+        } else {return false;}
     }
 
     //Для выведения количества итераций собзания объекта animals.Kotik
@@ -144,17 +133,14 @@ public class Kotik extends Carnivorous implements Run,Voice{
         return count;
     }
 
-    public boolean hunt(){
-        if( satiety>0){
-            System.out.println("Котик охотится");
+    private boolean hunt(){
+        if( this.satiety>0){
+            //System.out.println("Котик охотится");
             // случайно определяем сколько единиц сытости ушло во время hunt()
             int randomSatiety = (int) (Math.random() * 10);
             this.satiety -=randomSatiety;
             return true;
-        } else {
-            eat((int) (Math.random() * 10));
-            return false;
-        }
+        } else {return false;}
     }
 
     // Перегрузка методов eat
@@ -162,37 +148,69 @@ public class Kotik extends Carnivorous implements Run,Voice{
         System.out.println("Кормим котика");
         this.satiety += satiety;
     }
+    private void eat(int satiety, String food){
+        System.out.println("Кормим котика. Еда:" + food);
+        this.satiety += satiety;
+    }
+    public void eat(){
+        System.out.print("Вызываем метод кормления food");
+        eat(satiety, food);
+    }
 
 
-    public void liveAnotherDay(){
-
+    public String[] liveAnotherDay(){
+        String[] liveKotik = new String[24];
         System.out.println("Очень важные дела котика по имени "+this.name+" за весь день:");
         for (int i=0; i<24; i++){
             int a = (int) (Math.random() * METHODS) + 1;
             switch (a){
                 case 1:
-                    System.out.print(i+" - ");
-                    play();
-                    break;
+                    if(!play()) {
+                        this.eat((int) (Math.random() * 10));
+                        liveKotik[i] = "" + i + " - покормили голодного котика";
+                        break;
+                    }
+                    else {liveKotik[i] = ""+i+" - играть";
+                        break;
+                    }
+
                 case 2:
-                    System.out.print(i+" - " );
-                    sleep();
-                    break;
+                    if (!sleep()){
+                        eat((int) (Math.random() * 10));
+                        liveKotik[i] = ""+i+" - покормили голодного котика";
+
+                        break;
+                    }else {liveKotik[i] = ""+i+" - спит";
+                        break;}
+
                 case 3:
-                    System.out.print(i+" - " );
-                    wash();
-                    break;
+                    if (!wash()){
+                        eat((int) (Math.random() * 10));
+                        liveKotik[i] = ""+i+" - покормили голодного котика";
+                        break;
+                    }else {liveKotik[i] = ""+i+" - умывается ";
+                        break;}
                 case 4:
-                    System.out.print(i+" - " );
-                    walk();
-                    break;
+                    if (!walk()){
+                        eat((int) (Math.random() * 10));
+                        liveKotik[i] = ""+i+" - покормили голодного котика";
+                        break;
+                    }else {liveKotik[i] = ""+i+" - гуляет";
+                        break;}
+
                 case 5:
-                    System.out.print(i+" - " );
-                    hunt();
-                    break;
+                    if (!hunt()){
+                        eat((int) (Math.random() * 10), "Мышка");
+                        liveKotik[i] = ""+i+" - покормили голодного котика";
+                        break;
+                    }else{
+                        liveKotik[i] = ""+i+" - охотится";
+                        break;}
             }
         }
+        return liveKotik;
     }
+
 
     @Override
     public void run() {
