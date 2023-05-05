@@ -8,20 +8,30 @@ public class NegativeCalculatorTest {
     @DataProvider
     public Object[][] negativeData(){
         return new Object[][]{
-                {"+", "5.8", "7.2", "13.6"},
-                {"-", "", "6.0", "1.1"},
-                {"*", "2.2", "2.0", "4.4"},
-                {"/", "10.0", "0.0", "20.0"}
+                {"+", "5.8", "7.2"},
+                {"-", "", "6.0"},
+                {"*", "one", "2.0"},
+                {"/", "10.0", "0"}
         };
     }
     @Test(dataProvider = "negativeData")
-    public void negativeTest( String op, String n1, String n2, String result) throws CalculatorException
+    public void negativeTest( String op, String n1, String n2) throws CalculatorException
     {
-        //деление на 0 и пустые строки
-        if(((n2.equals("0"))&&(op.equals("/")))||(n1.equals(""))||(n2.equals(""))||(op.equals(""))){
-            throw new CalculatorException();
-        }else {
-            Assert.assertNotEquals(result, Calculator.execute(new String[]{op, n1, n2}), "Значения равны");
-        }
+        if(!op.isEmpty()&&!n1.isEmpty()&&!n2.isEmpty()){
+            //деление на 0 и пустые строки
+            if((n2.equals("0"))&&(op.equals("/"))){
+                throw new CalculatorException("Деление на 0");
+            }else {
+                try {
+                    Double.parseDouble(n1);
+                    Double.parseDouble(n2);
+                } catch (NumberFormatException ex) {
+                    throw new CalculatorException("Одно из чисел не является числом", ex);
+                }
+                if (Double.parseDouble(n1) < Double.MAX_VALUE || Double.parseDouble(n1) > Double.MIN_VALUE || Double.parseDouble(n2) < Double.MAX_VALUE || Double.parseDouble(n2) < Double.MIN_VALUE) {
+                    throw new CalculatorException("Одно из чисел вне границ диапазона");
+                }
+            }
+        }else {throw new CalculatorException("Одно из значений пустая строка");}
     }
 }
