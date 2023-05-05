@@ -8,11 +8,11 @@ public class NegativeCalculatorTest {
     @DataProvider
     public Object[][] negativeData(){
         return new Object[][]{
-                {"+", "2147483646", "2147483646"}
-                //{"-", "", "6"},
-                //{"*", "one", "2.0"},
-                //{"/", "10", "0"},
-                //{"+", "-2147483648", "2147483648"}
+                {"+", "1.7976931348623157E+309", "7.2"},
+                {"+", "4.9406564584124654E-324", "7.2"},
+                {"-", "", "6.0"},
+                {"*", "one", "2.0"},
+                {"/", "10.0", "0"}
         };
     }
     @Test(dataProvider = "negativeData")
@@ -26,12 +26,12 @@ public class NegativeCalculatorTest {
                     throw new CalculatorException("Деление на 0");
                 } else {
                     try {
-                        Integer.parseInt(n1);
-                        Integer.parseInt(n2);
+                        Double.parseDouble(n1);
+                        Double.parseDouble(n2);
                     } catch (NumberFormatException ex) {
                         throw new CalculatorException("Одно из чисел не является числом", ex);
                     }
-                    if (Integer.parseInt(n1) < Integer.MAX_VALUE || Integer.parseInt(n1) > Integer.MIN_VALUE || Integer.parseInt(n2) < Integer.MAX_VALUE || Integer.parseInt(n2) < Integer.MIN_VALUE) {
+                    if (Double.parseDouble(n1) < Double.MAX_VALUE || Double.parseDouble(n1) > Double.MIN_VALUE || Double.parseDouble(n2) < Double.MAX_VALUE || Double.parseDouble(n2) < Double.MIN_VALUE) {
                         throw new CalculatorException("Одно из чисел вне границ диапазона");
                     }
                 }
