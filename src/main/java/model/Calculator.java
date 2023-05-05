@@ -7,8 +7,8 @@ public class Calculator {
     public static String execute(String[] params) {
         String operator = params[0];
 
-        double value1 = Double.parseDouble(params[1]);
-        double value2 = Double.parseDouble(params[2]);
+        int value1 = Integer.parseInt(params[1]);
+        int value2 = Integer.parseInt(params[2]);
         double result = calculate(operator, value1, value2);
         if (result > Integer.MAX_VALUE || result < Integer.MIN_VALUE) {
             throw new CalculatorException("Превышен порог значений");

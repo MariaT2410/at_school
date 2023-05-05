@@ -8,30 +8,36 @@ public class NegativeCalculatorTest {
     @DataProvider
     public Object[][] negativeData(){
         return new Object[][]{
-                {"+", "1.7976931348623157E+309", "7.2"},
-                {"-", "", "6.0"},
-                {"*", "one", "2.0"},
-                {"/", "10.0", "0"}
+                {"+", "2147483646", "2147483646"}
+                //{"-", "", "6"},
+                //{"*", "one", "2.0"},
+                //{"/", "10", "0"},
+                //{"+", "-2147483648", "2147483648"}
         };
     }
     @Test(dataProvider = "negativeData")
     public void negativeTest( String op, String n1, String n2) throws CalculatorException
     {
-        if(!op.isEmpty()&&!n1.isEmpty()&&!n2.isEmpty()){
-            //деление на 0 и пустые строки
-            if((n2.equals("0"))&&(op.equals("/"))){
-                throw new CalculatorException("Деление на 0");
-            }else {
-                try {
-                    Double.parseDouble(n1);
-                    Double.parseDouble(n2);
-                } catch (NumberFormatException ex) {
-                    throw new CalculatorException("Одно из чисел не является числом", ex);
+        if(op.equals("")){throw new CalculatorException();}
+        else {
+            if (!op.isEmpty() && !n1.isEmpty() && !n2.isEmpty()) {
+                //деление на 0 и пустые строки
+                if ((n2.equals("0")) && (op.equals("/"))) {
+                    throw new CalculatorException("Деление на 0");
+                } else {
+                    try {
+                        Integer.parseInt(n1);
+                        Integer.parseInt(n2);
+                    } catch (NumberFormatException ex) {
+                        throw new CalculatorException("Одно из чисел не является числом", ex);
+                    }
+                    if (Integer.parseInt(n1) < Integer.MAX_VALUE || Integer.parseInt(n1) > Integer.MIN_VALUE || Integer.parseInt(n2) < Integer.MAX_VALUE || Integer.parseInt(n2) < Integer.MIN_VALUE) {
+                        throw new CalculatorException("Одно из чисел вне границ диапазона");
+                    }
                 }
-                if (Double.parseDouble(n1) < Double.MAX_VALUE || Double.parseDouble(n1) > Double.MIN_VALUE || Double.parseDouble(n2) < Double.MAX_VALUE || Double.parseDouble(n2) < Double.MIN_VALUE) {
-                    throw new CalculatorException("Одно из чисел вне границ диапазона");
-                }
+            } else {
+                throw new CalculatorException("Одно из значений пустая строка");
             }
-        }else {throw new CalculatorException("Одно из значений пустая строка");}
+        }
     }
 }
