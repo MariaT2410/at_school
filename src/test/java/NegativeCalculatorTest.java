@@ -8,7 +8,7 @@ public class NegativeCalculatorTest {
     @DataProvider
     public Object[][] negativeData(){
         return new Object[][]{
-                {"+", "5.8", "7.2"},
+                {"+", "1.7976931348623157E+309", "7.2"},
                 {"-", "", "6.0"},
                 {"*", "one", "2.0"},
                 {"/", "10.0", "0"}
