@@ -6,7 +6,7 @@ public class Calculator {
 
     public static String execute(String[] params) {
         String operator = params[1];
-        //try {
+        try {
             double value1 = Double.parseDouble(params[0]);
             double value2 = Double.parseDouble(params[2]);
             double result = Math.round(calculate(operator, value1, value2)*1000.0)/1000.0;
@@ -14,9 +14,9 @@ public class Calculator {
                 throw new CalculatorException("Превышен порог у вводимых значений и выводимых значений");
             }
             return String.valueOf(result);
-        //} catch (NumberFormatException e){
-        //    throw new CalculatorException("Проблема перевода строки в число");
-        //}
+        } catch (CalculatorException e){
+            throw new CalculatorException("Проблема перевода строки в число");
+        }
     }
 
     private static double calculate(String operator, double a, double b) {
