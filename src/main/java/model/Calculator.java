@@ -6,7 +6,6 @@ public class Calculator {
 
     public static String execute(String[] params) {
         String operator = params[0];
-
         double value1 = Double.parseDouble(params[1]);
         double value2 = Double.parseDouble(params[2]);
         double result = Math.round(calculate(operator, value1, value2)*1000.0)/1000.0;
@@ -22,6 +21,7 @@ public class Calculator {
                 return add(a, b);
             case "-":
                 return subst(a, b);
+
             case "*":
                 return mult(a, b);
             case "/":

@@ -8,13 +8,19 @@ public class NegativeCalculatorTest {
     @DataProvider
     public Object[][] negativeData(){
         return new Object[][]{
-                {"+", "2147483648", "7.2"},
-                {"+", "-2147483648 ", "7.2"},
-                {"-", "", "6.0"},
-                {"*", "one", "2.0"},
-                {"/", "10.0", "0"},
-                {"+", "-2147483649 ", "7.2"},
-                {"", "10.0", "0"},
+                {"+", "2147483648.0", "7.2"},// граница верхнего диапазона
+                {"+", "-2147483647.0", "-2147483647"},//результат за границей
+                {"+", "-2147483648.0", "7.0"},
+                {"-", "", "6.0"},//пустая строка
+                {"*", "one", "2.0"},// строка one в число
+                {"/", "10.0", "0"},// деление на 0
+                {"+", "-2147483649.0", "7.2"},// граница нижнего диапазона
+                {"", "10.0", "0"},// пустая строка в операторе
+                {"=", "10.0", "2.0"},// оператор не + - / *
+                {"0", "one", "two"},
+                {null, null, null },
+                {"+", "1", "1"}
+
         };
     }
     @Test(dataProvider = "negativeData", expectedExceptions= {RuntimeException.class})
@@ -30,8 +36,8 @@ public class NegativeCalculatorTest {
                     try {
                         Double.parseDouble(n1);
                         Double.parseDouble(n2);
-                    } catch (RuntimeException e) { }
-                    if (Double.parseDouble(n1) < Integer.MAX_VALUE || Double.parseDouble(n1) > Integer.MIN_VALUE || Double.parseDouble(n2) < Integer.MAX_VALUE || Double.parseDouble(n2) < Integer.MIN_VALUE) {
+                    } catch (RuntimeException e) { throw new RuntimeException(); }
+                    if (Double.parseDouble(Calculator.execute(new String[]{op, n1, n2}))<Integer.MAX_VALUE||Double.parseDouble(Calculator.execute(new String[]{op, n1, n2}))> Integer.MIN_VALUE||Double.parseDouble(n1) < Integer.MAX_VALUE || Double.parseDouble(n1) > Integer.MIN_VALUE || Double.parseDouble(n2) < Integer.MAX_VALUE || Double.parseDouble(n2) < Integer.MIN_VALUE) {
                         throw new RuntimeException("Одно из чисел вне границ диапазона");
                     }
                 }
