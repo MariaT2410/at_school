@@ -26,10 +26,10 @@ public class NegativeCalculatorTest {
         };
     }
 
-    @Test(dataProvider = "negativeData", expectedExceptions = {RuntimeException.class, IndexOutOfBoundsException.class})
+    @Test(dataProvider = "negativeData", expectedExceptions = {RuntimeException.class})
     public void negativeTest(String op, String n1, String n2) {
         if ((!op.equals("")) || op.equals("+") || op.equals("-") || op.equals("*") || op.equals("/")) {
-            if (op != null && n1 != null && n2 != null) {
+            if (n1 != null && n2 != null) {
                 //деление на 0 и пустые строки
                 if ((n2.equals("0")) && (op.equals("/"))) {
                     throw new RuntimeException("Деление на 0");
@@ -47,7 +47,7 @@ public class NegativeCalculatorTest {
                     }
                 }
             } else {
-                throw new IndexOutOfBoundsException();
+                throw new RuntimeException();
             }
         } else {
             throw new RuntimeException();
