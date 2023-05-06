@@ -2,13 +2,17 @@ package model;
 
 //import java.model.CalculatorException;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Calculator {
 
     public static String execute(String[] params) {
-        String operator = params[1];
+        //Calculator.isOperator(params);
+        String operator = params[isOperator(params)];
         try {
-            double value1 = Double.parseDouble(params[0]);
-            double value2 = Double.parseDouble(params[2]);
+            double value1 = Double.parseDouble(isNum(params).get(0));
+            double value2 = Double.parseDouble(isNum(params).get(1));
             double result = Math.round(calculate(operator, value1, value2)*1000.0)/1000.0;
             if (result > Integer.MAX_VALUE || result < Integer.MIN_VALUE || value1> Integer.MAX_VALUE || value1 < Integer.MIN_VALUE || value2> Integer.MAX_VALUE || value2 < Integer.MIN_VALUE) {
                 throw new CalculatorException("Превышен порог у вводимых значений и выводимых значений");
@@ -51,4 +55,36 @@ public class Calculator {
     private static double mult(double a, double b) {
         return a * b;
     }
+
+    private static boolean isDouble(String str) {
+        try {
+            Double.parseDouble(str);
+            return true;
+        } catch (NumberFormatException e) {
+            return false;
+        }
+    }
+    private static int isOperator(String[] params){
+        int newParam = 0;
+        for(int i =0; i<3; i++) {
+            //String op = params[i];
+            if (!isDouble(params[i])) {
+                newParam = i;
+            }
+        }
+        return newParam;
+    }
+    private static ArrayList<String> isNum(String[] params){
+        //String[] newParam = new String[]{};
+        ArrayList<String> res = new ArrayList<>();
+        String a;
+        for(String i:params) {
+            if(!i.equals(params[isOperator(params)])){
+                res.add(i);
+            }
+        }
+        return res;
+    }
+
 }
+
