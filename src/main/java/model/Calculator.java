@@ -14,7 +14,7 @@ public class Calculator {
                 throw new CalculatorException("Превышен порог у вводимых значений и выводимых значений");
             }
             return String.valueOf(result);
-        } catch (CalculatorException e){
+        } catch (NumberFormatException e){
             throw new CalculatorException("Проблема перевода строки в число");
         }
     }
