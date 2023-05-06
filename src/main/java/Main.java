@@ -17,7 +17,7 @@ public class Main {
         String number2 = in.nextLine();
         //System.out.println("Результат:"+(Arrays.toString(new String[]{mathOperation, number1, number2})));
 
-        System.out.println(Calculator.execute(new String[]{mathOperation, number1,number2}));
+        System.out.println(Calculator.execute(new String[]{ number1, mathOperation, number2}));
     }
 
     private static String[] readParams() {
