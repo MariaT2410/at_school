@@ -38,7 +38,7 @@ public class NegativeCalculatorTest {
                         Double.parseDouble(n1);
                         Double.parseDouble(n2);
                     } catch (RuntimeException e) { throw new RuntimeException(); }
-                    if (Double.parseDouble(Calculator.execute(new String[]{op, n1, n2}))<Integer.MAX_VALUE||Double.parseDouble(Calculator.execute(new String[]{op, n1, n2}))> Integer.MIN_VALUE||Double.parseDouble(n1) < Integer.MAX_VALUE || Double.parseDouble(n1) > Integer.MIN_VALUE || Double.parseDouble(n2) < Integer.MAX_VALUE || Double.parseDouble(n2) < Integer.MIN_VALUE) {
+                    if (Double.parseDouble(Calculator.execute(new String[]{n1, op, n2}))<Integer.MAX_VALUE||Double.parseDouble(Calculator.execute(new String[]{n1, op, n2}))> Integer.MIN_VALUE||Double.parseDouble(n1) < Integer.MAX_VALUE || Double.parseDouble(n1) > Integer.MIN_VALUE || Double.parseDouble(n2) < Integer.MAX_VALUE || Double.parseDouble(n2) < Integer.MIN_VALUE) {
                         throw new RuntimeException("Одно из чисел вне границ диапазона");
                     }
                 }
