@@ -20,6 +20,7 @@ public class Main {
         System.out.println(Calculator.execute(new String[]{ number1, mathOperation, number2}));
     }
 
+    /*
     private static String[] readParams() {
         // считать из консоли данные, затем вернуть их в виде массива строк( сделано)
         Scanner in = new Scanner(System.in);
@@ -32,4 +33,6 @@ public class Main {
         //System.out.println("Результат:"+(Arrays.toString(new String[]{mathOperation, number1, number2})));
         return new String[]{mathOperation, number1,number2};
     }
+
+     */
 }

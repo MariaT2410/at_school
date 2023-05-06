@@ -14,13 +14,13 @@ public class Calculator {
                 throw new CalculatorException("Превышен порог у вводимых значений и выводимых значений");
             }
             return String.valueOf(result);
-        } catch (RuntimeException e){
+        } catch (NumberFormatException e){
             throw new CalculatorException("Проблема перевода строки в число");
         }
     }
 
     private static double calculate(String operator, double a, double b) {
-        switch (operator) {
+            switch (operator) {
             case "+":
                 return add(a, b);
             case "-":

@@ -20,7 +20,7 @@ public class NegativeCalculatorTest {
                 {"=", "10.0", "2.0"},// оператор не + - / *
                 {"0", "one", "two"},
                 {null, null, null },
-                {"+", "1", "1"}
+                {"+", "1", "1"},
 
         };
     }
