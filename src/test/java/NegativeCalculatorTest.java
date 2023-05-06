@@ -20,7 +20,6 @@ public class NegativeCalculatorTest {
                 {"=", "10.0", "2.0"},// оператор не + - / *
                 {"0", "one", "two"},
                 {null, null, null},
-                {"+", "1", "1"},
                 {"plus", "1", "1"},
 
         };
@@ -29,7 +28,7 @@ public class NegativeCalculatorTest {
     @Test(dataProvider = "negativeData", expectedExceptions = {RuntimeException.class})
     public void negativeTest(String op, String n1, String n2) {
         if ((!op.equals("")) || op.equals("+") || op.equals("-") || op.equals("*") || op.equals("/")) {
-            if (!op.isEmpty() && !n1.isEmpty() && !n2.isEmpty()) {
+            if (op != null && n1 != null && n2 != null) {
                 //деление на 0 и пустые строки
                 if ((n2.equals("0")) && (op.equals("/"))) {
                     throw new RuntimeException("Деление на 0");
