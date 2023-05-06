@@ -9,11 +9,8 @@ public class Main {
         //String[] params = readParams();
         // считать из консоли данные, затем вернуть их в виде массива строк( сделано)
         Scanner in = new Scanner(System.in);
-        System.out.print("Введите первое число: ");
         String number1 = in.nextLine();
-        System.out.print("Введите арифметическую операцию + , - , * , /: ");
         String mathOperation = in.nextLine();
-        System.out.print("Введите второе число: ");
         String number2 = in.nextLine();
         //System.out.println("Результат:"+(Arrays.toString(new String[]{mathOperation, number1, number2})));
 
