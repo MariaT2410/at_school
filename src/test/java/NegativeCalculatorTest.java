@@ -28,34 +28,38 @@ public class NegativeCalculatorTest {
 
     @Test(dataProvider = "negativeData", expectedExceptions = {CalculatorException.class})
     public void negativeTest(String op, String n1, String n2) {
-        if ((!op.isEmpty()||op!=null) && (!n1.isEmpty()||n1!=null) && (!n2.isEmpty()||n2!=null)){
-            if ((!op.equals("")) || op.equals("+") || op.equals("-") || op.equals("*") || op.equals("/")) {
-                //деление на 0 и пустые строки
-                if ((n2.equals("0")) && (op.equals("/"))) {
-                    throw new CalculatorException("Деление на 0");
-                } else {
-                    try {
-                        Double.parseDouble(n1);
-                        Double.parseDouble(n2);
-                    } catch (RuntimeException e) {
-                        throw new CalculatorException();
-                    }
-                    if ( Double.parseDouble(n1) > Integer.MAX_VALUE || Double.parseDouble(n1) < Integer.MIN_VALUE ){
-                        throw new CalculatorException("Одно из чисел вне границ диапазона n1");
-                    }else {
-                        if (Double.parseDouble(n2) > Integer.MAX_VALUE || Double.parseDouble(n2) < Integer.MIN_VALUE) {
-                            throw new CalculatorException("Одно из чисел вне границ диапазона n2");
-                        } else
-                        if (Double.parseDouble(Calculator.execute(new String[]{n1, op, n2})) > Integer.MAX_VALUE || Double.parseDouble(Calculator.execute(new String[]{n1, op, n2})) < Integer.MIN_VALUE) {
-                            throw new CalculatorException("Результат вне границ диапазона");
-                        }else { Assert.assertTrue(Double.parseDouble(Calculator.execute(new String[]{n1, op, n2})) <= Integer.MAX_VALUE || Double.parseDouble(Calculator.execute(new String[]{n1, op, n2})) >= Integer.MIN_VALUE);
-                            throw new CalculatorException("Данные корректны");
+        if ((!op.isEmpty()) && (!n1.isEmpty()) && (!n2.isEmpty())){
+            if(op==null||n1==null||n2==null){throw new CalculatorException();}
+            else {
+                if ((!op.equals("")) || op.equals("+") || op.equals("-") || op.equals("*") || op.equals("/")) {
+                    //деление на 0 и пустые строки
+                    if ((n2.equals("0")) && (op.equals("/"))) {
+                        throw new CalculatorException("Деление на 0");
+                    } else {
+                        try {
+                            Double.parseDouble(n1);
+                            Double.parseDouble(n2);
+                        } catch (RuntimeException e) {
+                            throw new CalculatorException();
+                        }
+                        if (Double.parseDouble(n1) > Integer.MAX_VALUE || Double.parseDouble(n1) < Integer.MIN_VALUE) {
+                            throw new CalculatorException("Одно из чисел вне границ диапазона n1");
+                        } else {
+                            if (Double.parseDouble(n2) > Integer.MAX_VALUE || Double.parseDouble(n2) < Integer.MIN_VALUE) {
+                                throw new CalculatorException("Одно из чисел вне границ диапазона n2");
+                            } else if (Double.parseDouble(Calculator.execute(new String[]{n1, op, n2})) > Integer.MAX_VALUE || Double.parseDouble(Calculator.execute(new String[]{n1, op, n2})) < Integer.MIN_VALUE) {
+                                throw new CalculatorException("Результат вне границ диапазона");
+                            } else {
+                                Assert.assertTrue(Double.parseDouble(Calculator.execute(new String[]{n1, op, n2})) <= Integer.MAX_VALUE || Double.parseDouble(Calculator.execute(new String[]{n1, op, n2})) >= Integer.MIN_VALUE);
+
+                            }
                         }
                     }
+                } else {
+                    throw new CalculatorException();
                 }
-            } else {
-                throw new CalculatorException();
             }
+
         } else {
             throw new CalculatorException();
         }
