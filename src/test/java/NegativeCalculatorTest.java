@@ -50,6 +50,7 @@ public class NegativeCalculatorTest {
                             throw new CalculatorException("Результат вне границ диапазона");
                         } else {
                             Assert.assertTrue(Double.parseDouble(Calculator.execute(new String[]{n1, op, n2})) <= Integer.MAX_VALUE || Double.parseDouble(Calculator.execute(new String[]{n1, op, n2})) >= Integer.MIN_VALUE);
+                            Calculator.execute(new String[]{n1, op, n2});
 
                         }
                     }
