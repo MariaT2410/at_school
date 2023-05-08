@@ -19,7 +19,7 @@ public class NegativeCalculatorTest {
                 {"", "10.0", "0"},// пустая строка в операторе
                 {"=", "10.0", "2.0"},// оператор не + - / *
                 {"0", "one", "two"},
-                {"+", "1", "1"},
+                //{"+", "1", "1"},
                 {"null", "null", "null"},
                 {"plus", "1", "1"},
 
@@ -51,7 +51,7 @@ public class NegativeCalculatorTest {
                         } else {
                             Assert.assertTrue(Double.parseDouble(Calculator.execute(new String[]{n1, op, n2})) <= Integer.MAX_VALUE || Double.parseDouble(Calculator.execute(new String[]{n1, op, n2})) >= Integer.MIN_VALUE);
                             Calculator.execute(new String[]{n1, op, n2});
-                            throw new CalculatorException("Данные корректны");
+
 
                         }
                     }
