@@ -26,10 +26,10 @@ public class NegativeCalculatorTest {
         };
     }
 
-    @Test(dataProvider = "negativeData", expectedExceptions = {RuntimeException.class})
+    @Test(dataProvider = "negativeData", expectedExceptions = {CalculatorException.class})
     public void negativeTest(String op, String n1, String n2) {
         if ((!op.equals("")) || op.equals("+") || op.equals("-") || op.equals("*") || op.equals("/")) {
-            if (!op.isEmpty() && !n1.isEmpty() && !n2.isEmpty()) {
+            if ((!op.isEmpty()||op!=null) && (!n1.isEmpty()||n1!=null) && (!n2.isEmpty()||n2!=null)) {
                 //деление на 0 и пустые строки
                 if ((n2.equals("0")) && (op.equals("/"))) {
                     throw new RuntimeException("Деление на 0");
