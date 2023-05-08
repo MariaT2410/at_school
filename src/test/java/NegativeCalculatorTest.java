@@ -26,9 +26,9 @@ public class NegativeCalculatorTest {
         };
     }
 
-    @Test(dataProvider = "negativeData", expectedExceptions = {RuntimeException.class})
+    @Test(dataProvider = "negativeData", expectedExceptions = {CalculatorException.class})
     public void negativeTest(String op, String n1, String n2) {
-         Assert.assertTrue(Double.parseDouble(Calculator.execute(new String[]{n1, op, n2})) <= Integer.MAX_VALUE || Double.parseDouble(Calculator.execute(new String[]{n1, op, n2})) >= Integer.MIN_VALUE);
+         Assert.assertTrue(Double.parseDouble(Calculator.execute(new String[]{n1, op, n2})) <= Integer.MAX_VALUE || Double.parseDouble(Calculator.execute(new String[]{n1, op, n2})) >= Integer.MIN_VALUE, "Данные корректны");
 
     }
 }
