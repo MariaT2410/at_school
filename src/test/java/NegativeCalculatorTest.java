@@ -28,7 +28,11 @@ public class NegativeCalculatorTest {
 
     @Test(dataProvider = "negativeData", expectedExceptions = {CalculatorException.class})
     public void negativeTest(String op, String n1, String n2) {
-         Assert.assertTrue(Double.parseDouble(Calculator.execute(new String[]{n1, op, n2})) <= Integer.MAX_VALUE || Double.parseDouble(Calculator.execute(new String[]{n1, op, n2})) >= Integer.MIN_VALUE, "Данные корректны");
+         //Assert.assertTrue((Double.parseDouble(n1)< Integer.MAX_VALUE || Double.parseDouble(n1) > Integer.MIN_VALUE)&&(Double.parseDouble(n2)< Integer.MAX_VALUE || Double.parseDouble(n2) > Integer.MIN_VALUE), "Данные не корректны");
+         //Assert.assertNotNull(n1, "Введеннео число null");
+         //Assert.assertNotNull(n2, "Введеннео число null");
+         //Assert.assertTrue((!n1.equals(""))||(!n2.equals("")), "Введенное число - пустая строка");
+         Assert.assertFalse(Double.parseDouble(Calculator.execute(new String[]{n1, op, n2})) < Integer.MAX_VALUE || Double.parseDouble(Calculator.execute(new String[]{n1, op, n2})) > Integer.MIN_VALUE, "данные корректны");
 
     }
 }
