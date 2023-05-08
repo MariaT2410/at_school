@@ -10,7 +10,7 @@ public class NegativeCalculatorTest {
         return new Object[][]{
                 {"+", "2147483648.0", "7.2"},// граница верхнего диапазона
                 {"+", "-2147483647.0", "-2147483647"},//результат за границей нижнего
-                {"+", "-2147483648.0", "7.0"},
+                {"+", "-2147483649.0", "7.0"},
                 {"+", "2147483646.0", "7.2"}, //результат находится за верхней границей диапазона
                 {"-", "", "6.0"},//пустая строка
                 {"*", "one", "2.0"},// строка one в число
@@ -29,7 +29,7 @@ public class NegativeCalculatorTest {
     @Test(dataProvider = "negativeData", expectedExceptions = {RuntimeException.class})
     public void negativeTest(String op, String n1, String n2) {
         if ((!op.equals("")) || op.equals("+") || op.equals("-") || op.equals("*") || op.equals("/")) {
-            if (n1 != null && n2 != null) {
+            if (!op.isEmpty() && !n1.isEmpty() && !n2.isEmpty()) {
                 //деление на 0 и пустые строки
                 if ((n2.equals("0")) && (op.equals("/"))) {
                     throw new RuntimeException("Деление на 0");
@@ -40,10 +40,15 @@ public class NegativeCalculatorTest {
                     } catch (RuntimeException e) {
                         throw new RuntimeException();
                     }
-                    if ( Double.parseDouble(n1) < Integer.MAX_VALUE || Double.parseDouble(n1) > Integer.MIN_VALUE || Double.parseDouble(n2) < Integer.MAX_VALUE || Double.parseDouble(n2) < Integer.MIN_VALUE) {
-                        throw new RuntimeException("Одно из чисел вне границ диапазона");
-                    }else if (Double.parseDouble(Calculator.execute(new String[]{n1, op, n2})) < Integer.MAX_VALUE || Double.parseDouble(Calculator.execute(new String[]{n1, op, n2})) > Integer.MIN_VALUE ) {
-                        throw new RuntimeException("Результат вне границ диапазона");
+                    if ( Double.parseDouble(n1) > Integer.MAX_VALUE || Double.parseDouble(n1) < Integer.MIN_VALUE ){
+                        throw new RuntimeException("Одно из чисел вне границ диапазона n1");
+                    }else {
+                        if (Double.parseDouble(n2) > Integer.MAX_VALUE || Double.parseDouble(n2) < Integer.MIN_VALUE) {
+                            throw new RuntimeException("Одно из чисел вне границ диапазона n2");
+                        } else
+                            if (Double.parseDouble(Calculator.execute(new String[]{n1, op, n2})) > Integer.MAX_VALUE || Double.parseDouble(Calculator.execute(new String[]{n1, op, n2})) < Integer.MIN_VALUE) {
+                            throw new RuntimeException("Результат вне границ диапазона");
+                        }else { Assert.assertTrue(Double.parseDouble(Calculator.execute(new String[]{n1, op, n2})) <= Integer.MAX_VALUE || Double.parseDouble(Calculator.execute(new String[]{n1, op, n2})) >= Integer.MIN_VALUE); }
                     }
                 }
             } else {
