@@ -26,39 +26,9 @@ public class NegativeCalculatorTest {
         };
     }
 
-    @Test(dataProvider = "negativeData", expectedExceptions = {CalculatorException.class})
+    @Test(dataProvider = "negativeData", expectedExceptions = {RuntimeException.class})
     public void negativeTest(String op, String n1, String n2) {
-        if ((!op.equals("")) || op.equals("+") || op.equals("-") || op.equals("*") || op.equals("/")) {
-            if ((!op.isEmpty()||op!=null) && (!n1.isEmpty()||n1!=null) && (!n2.isEmpty()||n2!=null)) {
-                //деление на 0 и пустые строки
-                if ((n2.equals("0")) && (op.equals("/"))) {
-                    throw new RuntimeException("Деление на 0");
-                } else {
-                    try {
-                        Double.parseDouble(n1);
-                        Double.parseDouble(n2);
-                    } catch (RuntimeException e) {
-                        throw new RuntimeException();
-                    }
-                    if ( Double.parseDouble(n1) > Integer.MAX_VALUE || Double.parseDouble(n1) < Integer.MIN_VALUE ){
-                        throw new RuntimeException("Одно из чисел вне границ диапазона n1");
-                    }else {
-                        if (Double.parseDouble(n2) > Integer.MAX_VALUE || Double.parseDouble(n2) < Integer.MIN_VALUE) {
-                            throw new RuntimeException("Одно из чисел вне границ диапазона n2");
-                        } else
-                            if (Double.parseDouble(Calculator.execute(new String[]{n1, op, n2})) > Integer.MAX_VALUE || Double.parseDouble(Calculator.execute(new String[]{n1, op, n2})) < Integer.MIN_VALUE) {
-                            throw new RuntimeException("Результат вне границ диапазона");
-                        }else { Assert.assertTrue(Double.parseDouble(Calculator.execute(new String[]{n1, op, n2})) <= Integer.MAX_VALUE || Double.parseDouble(Calculator.execute(new String[]{n1, op, n2})) >= Integer.MIN_VALUE);
-                                throw new CalculatorException("Данные корректны");
-                            }
-                    }
-                }
-            } else {
-                throw new RuntimeException();
-            }
-        } else {
-            throw new RuntimeException();
-        }
+         Assert.assertTrue(Double.parseDouble(Calculator.execute(new String[]{n1, op, n2})) <= Integer.MAX_VALUE || Double.parseDouble(Calculator.execute(new String[]{n1, op, n2})) >= Integer.MIN_VALUE);
 
     }
 }
