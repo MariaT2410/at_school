@@ -48,7 +48,9 @@ public class NegativeCalculatorTest {
                         } else
                             if (Double.parseDouble(Calculator.execute(new String[]{n1, op, n2})) > Integer.MAX_VALUE || Double.parseDouble(Calculator.execute(new String[]{n1, op, n2})) < Integer.MIN_VALUE) {
                             throw new RuntimeException("Результат вне границ диапазона");
-                        }else { Assert.assertTrue(Double.parseDouble(Calculator.execute(new String[]{n1, op, n2})) <= Integer.MAX_VALUE || Double.parseDouble(Calculator.execute(new String[]{n1, op, n2})) >= Integer.MIN_VALUE); }
+                        }else { Assert.assertTrue(Double.parseDouble(Calculator.execute(new String[]{n1, op, n2})) <= Integer.MAX_VALUE || Double.parseDouble(Calculator.execute(new String[]{n1, op, n2})) >= Integer.MIN_VALUE);
+                                throw new CalculatorException("Данные корректны");
+                            }
                     }
                 }
             } else {
