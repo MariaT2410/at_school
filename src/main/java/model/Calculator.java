@@ -1,6 +1,5 @@
 package model;
 
-
 public class Calculator {
     public static String execute(String[] params) {
         //Calculator.isOperator(params);
@@ -64,6 +63,8 @@ public class Calculator {
             return false;
         }
     }
+
+    //Выделяем оператор
     private static int isOperator(String[] params){
         if((params[0] == null)||(params[0].isEmpty())||(params[1] == null)||(params[1].isEmpty())||(params[2] == null)||(params[2].isEmpty())){
             throw new CalculatorException("Проблем: одно из чисел null");
@@ -78,6 +79,7 @@ public class Calculator {
             return newParam;
         }
     }
+    //Выделяем числа
     private static String[] isNum(String[] params){
         if((params[0] == null)||(params[0].isEmpty())||(params[1] == null)||(params[1].isEmpty())||(params[2] == null)||(params[2].isEmpty())){
             throw new CalculatorException("Проблем: одно из чисел null");
