@@ -6,13 +6,13 @@ public enum Status {
     CLOSED(4),
     ;
 
-    private final int code;
+    private final Integer code;
 
-    Status(int code) {
+    Status(Integer code) {
         this.code=code;
     }
 
-    public int getCode() {
+    public Integer getCode() {
         return code;
     }
 }
